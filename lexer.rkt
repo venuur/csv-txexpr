@@ -7,10 +7,11 @@
 
 (define csv-lexer
   (lexer-srcloc
-   [(:= 1 ",") (token 'DELIMITER lexeme)]
-   [(:= 1 "\"") (token 'QUOTE lexeme)]
-   [(:= 1 newline) (token 'NEWLINE lexeme)]
-   [(:seq (:+ (:~ "," "\"" "\n")))
+   ["," (token 'DELIMITER lexeme)]
+   ["\\" (token 'ESCAPE lexeme)]
+   ["\"" (token 'QUOTE lexeme)]
+   [newline (token 'NEWLINE lexeme)]
+   [(:seq (:+ (:~ "," "\"" "\n" "\\")))
     (token 'VALUE lexeme)]))
 
 (define (lex str) (apply-port-proc csv-lexer str))
