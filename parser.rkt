@@ -1,5 +1,6 @@
 #lang brag
-table : record*
-record : field [DELIMITER field]* /NEWLINE
-field : (VALUE | ESCAPED-QUOTE)*
-      | /QUOTE (VALUE | ESCAPED-QUOTE | NEWLINE | DELIMITER)* /QUOTE
+table : [record (/NEWLINE record)*]
+record : field [/DELIMITER field]*
+field : (VALUE | escaped-quote)*
+      | /QUOTE (VALUE | escaped-quote | NEWLINE | DELIMITER)* /QUOTE
+@escaped-quote : /ESCAPE QUOTE

@@ -6,5 +6,5 @@
 (define (make-tokenizer in [path #f])
   (port-count-lines! in)
   (lexer-file-path path)
-  (define (next-token) (basic-lexer in))
+  (define (next-token) (csv-lexer in))
   next-token)
